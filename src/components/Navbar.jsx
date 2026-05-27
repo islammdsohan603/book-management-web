@@ -25,7 +25,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-xl border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="w-10/12 mx-auto px-6">
         <div className="h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
             <div className="bg-linear-to-r from-purple-500 to-emerald-500 p-2 rounded-xl">

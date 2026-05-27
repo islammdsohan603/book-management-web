@@ -1,19 +1,13 @@
-import { getData } from "@/db/data";
+import Banner from "@/components/home/Banner";
+
+
 
 export default async function Home() {
-  const data = await getData();
 
-  if (!data || data.length === 0) {
-    return <div>No books found</div>;
-  }
 
   return (
     <div>
-      {data.map((book) => (
-        <div key={book._id}>
-          <h1>{book.name}</h1>
-        </div>
-      ))}
+      <Banner />
     </div>
   );
 }

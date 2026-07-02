@@ -22,11 +22,10 @@ const BooksCard = ({ book }) => {
       {/* Image */}
       <div className="relative h-[300px] overflow-hidden">
         <Image
-          src={book.image}
+          src={book.image?.trim()}
           alt={book.title}
-          width={100}
-          height={100}
-          className="object-cover w-full h-full"
+          fill
+          className="object-cover"
         />
       </div>
 

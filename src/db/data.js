@@ -1,5 +1,9 @@
+
+
+const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
 export const getData = async () => {
-  const res = await fetch('http://localhost:4000/books', {
+  const res = await fetch(`${baseUrl}/api/all-books`, {
     cache: 'no-store',
   });
 

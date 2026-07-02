@@ -1,3 +1,4 @@
+import BooksData from "@/components/bookdata/BooksData";
 import Banner from "@/components/home/Banner";
 import CuratedGenres from "@/components/home/CuratedGenres";
 import NewsletterSection from "@/components/home/NewsletterSection";
@@ -12,6 +13,7 @@ export default async function Home() {
     <div>
       <Banner />
       <CuratedGenres />
+      <BooksData />
       <TrendingCurations />
       <NewsletterSection />
     </div>

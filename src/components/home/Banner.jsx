@@ -6,66 +6,34 @@ import { FaBookOpen } from 'react-icons/fa';
 
 export default function Banner() {
   return (
-    <section
-      className="
-      min-h-screen
-      bg-black
-      overflow-hidden
-      relative
-      text-white
-      "
-    >
-      <div
-        className="
-        absolute
-        w-[600px]
-        h-[600px]
-        bg-purple-700
-        blur-[250px]
-        opacity-20
-        -top-40
-        left-20
-        "
-      />
+    <section className="relative min-h-screen overflow-hidden bg-black text-white">
+      {/* Background Blur Effects */}
+      <div className="absolute -top-40 left-0 md:left-20 h-[300px] md:h-[600px] w-[300px] md:w-[600px] bg-purple-700 opacity-20 blur-[120px] md:blur-[250px]" />
 
-      <div
-        className="
-        absolute
-        w-[400px]
-        h-[400px]
-        bg-emerald-600
-        blur-[200px]
-        opacity-20
-        right-0
-        bottom-0
-        "
-      />
+      <div className="absolute bottom-0 right-0 h-[250px] md:h-[400px] w-[250px] md:w-[400px] bg-emerald-600 opacity-20 blur-[120px] md:blur-[200px]" />
 
-      <div className="w-10/12 mx-auto px-6">
-        <div className="grid md:grid-cols-2 items-center min-h-screen">
+      <div className="w-11/12 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid min-h-screen items-center gap-12 py-20 md:grid-cols-2">
+          {/* Left Content */}
           <motion.div
-            initial={{
-              opacity: 0,
-              x: -100,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 1,
-            }}
+            initial={{ opacity: 0, x: -80 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            className="text-center md:text-left"
           >
             <div
               className="
               inline-flex
-              px-5
-              py-2
               rounded-full
-              bg-white/10
               border
               border-purple-500
-              mb-8
+              bg-white/10
+              px-4
+              py-2
+              text-xs
+              sm:text-sm
+              md:text-base
+              mb-6
               "
             >
               📚 Premium Reading Experience
@@ -73,9 +41,12 @@ export default function Banner() {
 
             <h1
               className="
-              text-6xl
               font-black
               leading-tight
+              text-4xl
+              sm:text-5xl
+              lg:text-6xl
+              xl:text-7xl
               "
             >
               Discover The
@@ -84,8 +55,8 @@ export default function Banner() {
                 bg-linear-to-r
                 from-purple-400
                 to-emerald-400
-                text-transparent
                 bg-clip-text
+                text-transparent
                 "
               >
                 {' '}
@@ -95,23 +66,45 @@ export default function Banner() {
               of Reading
             </h1>
 
-            <p className="mt-8 text-gray-400 text-lg">
-              Explore, Manage, Bookmark and discover thousands of books with
-              modern experience.
+            <p
+              className="
+              mt-6
+              text-gray-400
+              text-base
+              sm:text-lg
+              max-w-xl
+              mx-auto
+              md:mx-0
+              "
+            >
+              Explore, Manage, Bookmark and discover thousands of books with a
+              modern, fast and user-friendly reading experience.
             </p>
 
-            <div className="mt-10 flex gap-4">
+            <div
+              className="
+              mt-8
+              flex
+              flex-col
+              sm:flex-row
+              gap-4
+              justify-center
+              md:justify-start
+              "
+            >
               <Link
                 href="/books"
                 className="
-                px-8
-                py-4
                 rounded-xl
                 bg-linear-to-r
                 from-purple-500
                 to-emerald-500
-                hover:scale-105
+                px-8
+                py-4
+                font-semibold
+                transition
                 duration-300
+                hover:scale-105
                 "
               >
                 Explore Books
@@ -120,11 +113,14 @@ export default function Banner() {
               <Link
                 href="/about"
                 className="
-                px-8
-                py-4
                 rounded-xl
                 border
                 border-white/20
+                px-8
+                py-4
+                font-semibold
+                transition
+                duration-300
                 hover:bg-white/10
                 "
               >
@@ -133,9 +129,10 @@ export default function Banner() {
             </div>
           </motion.div>
 
+          {/* Right Content */}
           <motion.div
             animate={{
-              y: [0, -25, 0],
+              y: [0, -20, 0],
             }}
             transition={{
               duration: 4,
@@ -145,22 +142,36 @@ export default function Banner() {
           >
             <div
               className="
-              w-[350px]
-              h-[350px]
+              flex
+              items-center
+              justify-center
               rounded-full
               bg-linear-to-r
               from-purple-600
               to-emerald-500
-              flex
-              items-center
-              justify-center
-              shadow-[0_0_150px_rgba(147,51,234,.6)]
+              shadow-[0_0_120px_rgba(147,51,234,.6)]
+
+              w-[220px]
+              h-[220px]
+
+              sm:w-[280px]
+              sm:h-[280px]
+
+              md:w-[350px]
+              md:h-[350px]
+
+              lg:w-[420px]
+              lg:h-[420px]
               "
             >
               <FaBookOpen
                 className="
-                text-[180px]
                 text-white
+
+                text-[90px]
+                sm:text-[120px]
+                md:text-[170px]
+                lg:text-[200px]
                 "
               />
             </div>

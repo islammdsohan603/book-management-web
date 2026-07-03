@@ -55,36 +55,36 @@ const BooksCard = ({ book }) => {
 
         {/* Buttons */}
         <div className="mt-6 flex gap-3">
-          <button
-            className="
-            flex-1
-            py-3
-            rounded-xl
-            bg-gradient-to-r
-            from-purple-500
-            to-emerald-500
-            text-white
-            font-medium
-            hover:opacity-90
-            transition
-          "
-          >
-            Read Now
-          </button>
-
           <Link
             href={`/books/${book._id}`}
             className="
-            p-3
-            rounded-xl
-            border
-            border-white/10
-            text-white
-            hover:bg-white/10
-            transition
-          "
+    flex-1
+    py-3
+    rounded-xl
+    flex
+    items-center
+    justify-center
+    gap-2
+    bg-linear-to-r
+    from-purple-500
+    to-emerald-500
+    text-white
+    font-medium
+    transition
+    hover:opacity-90
+    group
+  "
           >
-            <ArrowRight size={18} />
+            Read Now
+            <ArrowRight
+              size={18}
+              className="
+      transition-transform
+      duration-300
+      ease-in-out
+      group-hover:translate-x-2
+    "
+            />
           </Link>
         </div>
       </div>

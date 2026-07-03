@@ -1,22 +1,26 @@
+import BooksCard from "@/components/bookdata/BooksCard";
+import { getAllBooks } from "@/db/data";
 import Link from "next/link";
 
-export default function BooksPage() {
+export default async function BooksPage() {
+  const allbooks = await getAllBooks()
   return (
     <section className="min-h-screen bg-slate-950 px-6 py-24 text-white">
-      <div className="mx-auto max-w-5xl rounded-3xl border border-white/10 bg-white/5 p-10 shadow-2xl">
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-purple-400">
-          Library
-        </p>
-        <h1 className="mb-4 text-4xl font-black sm:text-5xl">Books collection</h1>
-        <p className="mb-8 max-w-2xl text-lg text-slate-300">
-          This page is now available. Add your favorite books here and keep browsing the collection.
-        </p>
-        <Link
-          href="/"
-          className="inline-flex rounded-full bg-gradient-to-r from-purple-500 to-emerald-500 px-6 py-3 font-semibold text-white transition hover:scale-105"
-        >
-          Back to home
-        </Link>
+      <div className="mx-auto max-w-7xl rounded-3xl border border-white/10 bg-white/5 p-10 shadow-2xl">
+        <div className="space-y-2 mb-3">
+          <h1 className="text-2xl md:text-4xl font-bold">BookShopes</h1>
+          <p className="text-sm md:text-2xl text-gray-500">Discover the best books from the world</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3   gap-6">
+
+          {
+            allbooks.map((book) => (
+              <BooksCard key={book._id} book={book} />
+            ))
+          }
+
+        </div>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
+// recent data
 export const getData = async () => {
   const res = await fetch(`${baseUrl}/api/recent-books`, {
     cache: 'no-store',
@@ -14,7 +15,7 @@ export const getData = async () => {
   return res.json();
 };
 
-
+// all data
 export const getAllBooks = async () => {
   try {
     const res = await fetch(`${baseUrl}/api/all-books`, {
@@ -32,3 +33,25 @@ export const getAllBooks = async () => {
   }
   return res.json();
 }
+
+// single data api
+
+export const getSingleBooks = async (id) => {
+  try {
+    const res = await fetch(`${baseUrl}/api/details/${id}`, {
+      cache: 'no-store'
+    })
+
+    if (!res.ok) {
+
+      throw new Error('Failed to fetch book');
+    }
+
+    return await res.json();
+
+  } catch (error) {
+    console.log("book server error", error)
+    return null
+  }
+}
+

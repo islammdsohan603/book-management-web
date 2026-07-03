@@ -1,9 +1,9 @@
-import { getAllBooks } from "@/db/data";
-import Link from "next/link";
 
-export default async function BookmarksPage() {
 
-  const allbooks = await getAllBooks()
+export default function BookmarksPage() {
+
+
+
 
 
   return (

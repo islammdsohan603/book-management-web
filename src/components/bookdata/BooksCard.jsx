@@ -6,18 +6,16 @@ const BooksCard = ({ book }) => {
   return (
     <div
       className="
-      group
-      overflow-hidden
-      rounded-3xl
-      bg-[#111827]
-      border
-      border-white/10
-      transition-all
-      duration-500
-      hover:-translate-y-2
-      hover:border-purple-500/40
-      hover:shadow-[0_0_30px_rgba(168,85,247,0.25)]
-    "
+    group
+    flex
+    flex-col
+    h-full
+    overflow-hidden
+    rounded-3xl
+    bg-[#111827]
+    border
+    border-white/10
+  "
     >
       {/* Image */}
       <div className="relative h-[300px] overflow-hidden">
@@ -30,7 +28,7 @@ const BooksCard = ({ book }) => {
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-6 flex flex-col flex-1">
         <h2 className="text-white text-xl font-bold line-clamp-1">
           {book.title}
         </h2>
@@ -54,36 +52,33 @@ const BooksCard = ({ book }) => {
         </div>
 
         {/* Buttons */}
-        <div className="mt-6 flex gap-3">
+        <div className="mt-auto pt-6">
           <Link
-            href={`/books/${book._id}`}
+            href={`/details/${book._id}`}
             className="
-    flex-1
-    py-3
-    rounded-xl
-    flex
-    items-center
-    justify-center
-    gap-2
-    bg-linear-to-r
-    from-purple-500
-    to-emerald-500
-    text-white
-    font-medium
-    transition
-    hover:opacity-90
-    group
-  "
+      w-full
+      py-3
+      rounded-xl
+      flex
+      items-center
+      justify-center
+      gap-2
+      bg-linear-to-r
+      from-purple-500
+      to-emerald-500
+      text-white
+      font-medium
+      group
+    "
           >
             Read Now
             <ArrowRight
               size={18}
               className="
-      transition-transform
-      duration-300
-      ease-in-out
-      group-hover:translate-x-2
-    "
+        transition-transform
+        duration-300
+        group-hover:translate-x-2
+      "
             />
           </Link>
         </div>

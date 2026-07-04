@@ -10,7 +10,7 @@ export default function BookmarksPage() {
     <section className="min-h-screen bg-slate-950 px-6 py-24 text-white">
       <div className="mx-auto max-w-5xl rounded-3xl border border-white/10 bg-white/5 p-10 shadow-2xl">
 
-
+        <h1>not found</h1>
 
       </div>
     </section>

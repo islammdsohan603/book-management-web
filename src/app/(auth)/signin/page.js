@@ -1,6 +1,68 @@
+
+'use client';
+
+import { useState } from "react";
+import { Eye, EyeSlash } from '@gravity-ui/icons';
+import { motion } from "framer-motion";
+import { authClient } from "@/lib/auth-client";
+
+import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { toast } from "react-toastify";
+
 
 export default function SignInPage() {
+
+  const router = useRouter()
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+  const onSubmit = async (e) => {
+
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.target);
+    const users = Object.fromEntries(formData);
+
+    try {
+
+      const { data, error } = await authClient.signIn.email({
+
+        email: users.email,
+        password: users.password,
+
+      });
+
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+
+      if (error) {
+        console.error('Server Error:', error);
+        toast.error(error.message || "Something went wrong! Server Error.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (data) {
+        console.log('SignUp Successful:', data);
+        toast.success("Account LogIn successfully!");
+
+        router.refresh();
+        router.push("/");
+      }
+
+    } catch (err) {
+
+      console.error("Network or Runtime Exception:", err);
+      toast.error("Internal Server Error or Network Timeout!");
+    }
+
+  }
+
   return (
     <section className="min-h-screen bg-slate-950 flex items-center justify-center px-4 py-12 text-white antialiased overflow-hidden">
       {/* Background glow */}
@@ -18,7 +80,7 @@ export default function SignInPage() {
         </h1>
         <p className="text-center text-sm text-slate-400 mb-8">Join us to explore new opportunities</p>
 
-        <form className="space-y-5">
+        <form onSubmit={onSubmit} className="space-y-5">
 
 
 

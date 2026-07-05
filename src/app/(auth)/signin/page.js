@@ -52,7 +52,7 @@ export default function SignInPage() {
         toast.success("Account LogIn successfully!");
 
         router.refresh();
-        router.push("/");
+        window.location.href = '/'
       }
 
     } catch (err) {

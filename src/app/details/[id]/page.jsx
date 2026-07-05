@@ -1,6 +1,8 @@
 import Image from 'next/image';
-import { Star, BookOpen } from 'lucide-react';
+import { Star, BookOpen, ArrowLeft } from 'lucide-react';
 import { getSingleBooks } from '@/db/data';
+import ReadBooksButton from '@/components/bookdata/ReadBooksButton';
+import Link from 'next/link';
 
 const BooksDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -19,6 +21,17 @@ const BooksDetailsPage = async ({ params }) => {
     <section className="min-h-screen py-20 bg-[#0B1120] text-white">
       <div className="w-11/12 max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* back button */}
+
+          <div className="lg:col-span-2 mb-6">
+            <Link href="/">
+              <button className="flex items-center gap-2 px-6 py-3 rounded-xl bg-linear-to-r from-purple-500 to-emerald-500 text-white font-semibold hover:scale-105 transition-transform duration-300 cursor-pointer">
+                <ArrowLeft size={18} />
+                Back to Home
+              </button>
+            </Link>
+          </div>
+
           {/* Image */}
           <div className="relative h-[600px] overflow-hidden rounded-3xl border border-white/10">
             <Image
@@ -94,10 +107,9 @@ const BooksDetailsPage = async ({ params }) => {
             </div>
 
             {/* Button */}
-            <button className="mt-8 px-8 py-4 rounded-xl bg-linear-to-r from-purple-500 to-emerald-500 font-semibold flex items-center gap-2 hover:scale-105 transition">
-              <BookOpen size={20} />
-              Read Book
-            </button>
+            <div>
+              <ReadBooksButton singlebook={singlebook._id} />
+            </div>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
 import Navbar from "@/components/share/Navbar";
 import Footer from "@/components/share/Footer";
 
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
 
       <body className="min-h-full flex flex-col">
         <div>
+          <ToastContainer />
           <Navbar />
           <main className="pt-20">
             {children}

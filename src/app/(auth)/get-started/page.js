@@ -2,34 +2,69 @@
 
 import { useState } from "react";
 import { Eye, EyeSlash } from '@gravity-ui/icons';
+import { motion } from "framer-motion";
+import { authClient } from "@/lib/auth-client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { toast } from "react-toastify";
 
 export default function GetStartedPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
   const onSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-    console.log("Form Data Submitted:", data);
+    const users = Object.fromEntries(formData);
+
+    try {
+
+      const { data, error } = await authClient.signUp.email({
+        name: users.name,
+        email: users.email,
+        password: users.password,
+        image: users.image
+      });
 
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    setIsSubmitting(false);
+
+      if (error) {
+        console.error('Server Error:', error);
+        toast.error(error.message || "Something went wrong! Server Error.");
+        setIsSubmitting(false);
+        return;
+      }
+
+
+      if (data) {
+        console.log('SignUp Successful:', data);
+        toast.success("Account created successfully!");
+
+        router.refresh();
+        router.push('/signin');
+      }
+
+    } catch (err) {
+
+      console.error("Network or Runtime Exception:", err);
+      toast.error("Internal Server Error or Network Timeout!");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section className="min-h-screen bg-slate-950 flex items-center justify-center px-4 py-12 text-white antialiased overflow-hidden">
-      {/*   */}
+      {/* Background glow */}
       <div className="absolute top-1/4 left-1/4 -z-10 h-72 w-72 rounded-full bg-blue-600/10 blur-[128px]" />
       <div className="absolute bottom-1/4 right-1/4 -z-10 h-72 w-72 rounded-full bg-purple-600/10 blur-[128px]" />
 
-      {/*   (motion.div) */}
       <motion.div
         initial={{ opacity: 0, y: 30, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -100,7 +135,7 @@ export default function GetStartedPage() {
             />
           </div>
 
-          {/* SignUp Button  */}
+          {/* SignUp Button */}
           <motion.button
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.98 }}
@@ -110,7 +145,6 @@ export default function GetStartedPage() {
           >
             {isSubmitting ? (
               <>
-                {/* sppinar*/}
                 <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -132,12 +166,14 @@ export default function GetStartedPage() {
           </div>
 
           {/* Footer */}
-          <p className="text-center text-sm text-slate-400">
+          <div className="text-center text-sm text-slate-400">
             Already have an account?
-            <span className="ml-2 cursor-pointer font-medium text-blue-400 hover:text-blue-300 transition-colors underline-offset-4 hover:underline">
-              Login
-            </span>
-          </p>
+            <Link href={'/signin'}>
+              <span className="ml-2 cursor-pointer font-medium text-blue-400 hover:text-blue-300 transition-colors underline-offset-4 hover:underline">
+                Login
+              </span>
+            </Link>
+          </div>
 
         </form>
       </motion.div>

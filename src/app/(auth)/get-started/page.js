@@ -54,8 +54,6 @@ export default function GetStartedPage() {
 
       console.error("Network or Runtime Exception:", err);
       toast.error("Internal Server Error or Network Timeout!");
-    } finally {
-      setIsSubmitting(false);
     }
   };
 

@@ -31,7 +31,7 @@ export const getAllBooks = async () => {
     console.error("Error fetching books", err);
     throw err;
   }
-  return res.json();
+
 }
 
 // single data api
@@ -52,6 +52,26 @@ export const getSingleBooks = async (id) => {
   } catch (error) {
     console.log("book server error", error)
     return null
+  }
+}
+
+
+
+// read book
+
+
+export const getReadBooksBookMarks = async () => {
+  try {
+
+    const res = await fetch(`${baseUrl}/api/get-read-book`, { cache: 'no-store' })
+    if (!res.ok) {
+      throw new Error('Failed to fetch data');
+    }
+
+    return res.json()
+
+  } catch (err) {
+    console.error("Error fetching books", err);
   }
 }
 

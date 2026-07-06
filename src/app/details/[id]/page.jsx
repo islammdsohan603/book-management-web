@@ -108,7 +108,7 @@ const BooksDetailsPage = async ({ params }) => {
 
             {/* Button */}
             <div>
-              <ReadBooksButton singlebook={singlebook._id} />
+              <ReadBooksButton singlebook={singlebook} />
             </div>
           </div>
         </div>
